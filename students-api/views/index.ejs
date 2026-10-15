@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Students Notes API</h1>
+  <% for( note of notes ) { %>
+    <div class="note">
+      <h3>Title <%= note.title %></h3>
+      <h4>Content <%= note.content %></h4>
+      <h4>Subject <%= note.subject %></h4>
+      <h4>Created Date <%= note.createdDate %></h4>
+      <h4>Updated Date <%= note.updatedDate %></h4>
+    </div>
+  <% } %>
+
+  <button><a href="http://localhost:8080/notes/new">Submit your new note</a></button>
+</body>
+</html>
