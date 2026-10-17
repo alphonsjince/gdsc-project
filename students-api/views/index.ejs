@@ -4,20 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Notes</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <h1>Students Notes API</h1>
-  <% for( note of notes ) { %>
+  <% for( let note of notes ) { %>
     <div class="note">
-      <h3>Title <%= note.title %></h3>
-      <h4>Content <%= note.content %></h4>
-      <h4>Subject <%= note.subject %></h4>
-      <h4>Created Date <%= note.createdDate %></h4>
-      <h4>Updated Date <%= note.updatedDate %></h4>
+      <h3>Title: <%= note.title %></h3>
+      <h4>Content: <%= note.content %></h4>
+      <h4>Subject: <%= note.subject %></h4>
+      <h4>Created Date: <%= note.createdDate %></h4>
+      <h4>Updated Date: <%= note.updatedDate %></h4>
+      <br>
+      <a href="http://localhost:8080/notes/<%= note.id %>">See in detail</a>
+      <a href="http://localhost:8080/notes/<%= note.id %>/edit">Edit </a>
+
+      <form method="post" action="/notes/<%= note.id %>?_method=DELETE">
+        <button>delete</button>
+      </form>
     </div>
   <% } %>
 
-  <button><a href="http://localhost:8080/notes/new">Submit your new note</a></button>
+  <button><a href="http://localhost:8080/notes/new">make your new note</a></button>
 </body>
 </html>

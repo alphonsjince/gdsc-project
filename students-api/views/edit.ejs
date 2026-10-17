@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit your Note</title>
+</head>
+<body>
+  <h2>Edit Your Note</h2>
+  <form method="post" action="/notes/<%= note.id %>?_method=PATCH">
+    <input placeholder="<%= note.title %>" name="title"> <br><br>
+    <textarea placeholder="<%= note.content %>" name="content"></textarea> <br><br>
+    <input placeholder="<%= note.subject %>" name="subject"> <br><br>
+    <h4>Updated date: <%= note.updatedDate %></h4>
+    <button>submit</button>
+  </form>
+</body>
+</html>
