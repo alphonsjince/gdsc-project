@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit your Note</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <h2>Edit Your Note</h2>
   <form method="post" action="/notes/<%= note.id %>?_method=PATCH">
-    <input placeholder="<%= note.title %>" name="title"> <br><br>
-    <textarea placeholder="<%= note.content %>" name="content"></textarea> <br><br>
-    <input placeholder="<%= note.subject %>" name="subject"> <br><br>
+    <input value="<%= note.title %>" name="title" required> <br><br>
+    <textarea placeholder="<%= note.content %>" name="content" required></textarea> <br><br>
+    <input value="<%= note.subject %>" name="subject" required> <br><br>
     <h4>Updated date: <%= note.updatedDate %></h4>
     <button>submit</button>
   </form>

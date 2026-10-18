@@ -8,23 +8,40 @@
 </head>
 <body>
   <h1>Students Notes API</h1>
+  <form method="GET" action="/notes">
+    <input type="text" name="search" placeholder="Search title" value="<%= search %>" autofocus>
+    <button type="submit">Search</button>
+
+    <% if (search) { %>
+      <a href="/notes" >Clear Search</a>
+    <% } %>
+  </form>
+
+  <% if (notes.length === 0) { %>
+  <div class="note" style="text-align: center; color: #6c757d;">
+    <p>No notes found matching your search. Try a different keyword!</p>
+    <a href="/notes">View all notes</a>
+  </div>
+<% } else { %>
+
   <% for( let note of notes ) { %>
     <div class="note">
       <h3>Title: <%= note.title %></h3>
       <h4>Content: <%= note.content %></h4>
       <h4>Subject: <%= note.subject %></h4>
-      <h4>Created Date: <%= note.createdDate %></h4>
-      <h4>Updated Date: <%= note.updatedDate %></h4>
+      <h4 class="date">Created Date: <%= note.createdDate %></h4>
+      <h4 class="date">Updated Date: <%= note.updatedDate %></h4>
       <br>
-      <a href="http://localhost:8080/notes/<%= note.id %>">See in detail</a>
-      <a href="http://localhost:8080/notes/<%= note.id %>/edit">Edit </a>
+      <a href="/notes/<%= note.id %>">See in detail</a>
+      <a href="/notes/<%= note.id %>/edit">Edit </a>
 
-      <form method="post" action="/notes/<%= note.id %>?_method=DELETE">
-        <button>delete</button>
+      <form method="post" action="/notes/<%= note.id %>?_method=DELETE" onsubmit="return confirm('do u want to delete')">
+        <button class="btn-delete">Delete</button>
       </form>
     </div>
   <% } %>
+  <% } %>
 
-  <button><a href="http://localhost:8080/notes/new">make your new note</a></button>
+  <button ><a href="/notes/new" class="new">make your new note</a></button>
 </body>
 </html>

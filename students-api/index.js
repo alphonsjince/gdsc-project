@@ -19,7 +19,16 @@ const port = 8080;
 
 app.get("/notes", (req, res) => {
   let notes = JSON.parse(fs.readFileSync(jsonFilePath, "utf-8"));
-  res.render("index.ejs", { notes });
+
+  let { search } = req.query;
+  if (search) {
+    notes = notes.filter((note) => {
+      return (
+        note.title.toLowerCase().includes(search.toLowerCase())
+      );
+    });
+  }
+  res.render("index.ejs", { notes, search });
 });
 
 app.get("/notes/new", (req, res) => {
@@ -81,7 +90,7 @@ app.delete("/notes/:id", (req, res) => {
   let notes = JSON.parse(fs.readFileSync(jsonFilePath, "utf-8"));
   notes = notes.filter((n) => n.id !== id);
   fs.writeFileSync(jsonFilePath, JSON.stringify(notes, null, 2), "utf-8");
-  
+
   res.redirect("/notes");
 });
 
