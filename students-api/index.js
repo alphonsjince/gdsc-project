@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const jsonFilePath = path.join(__dirname, "notes.json");
 
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 
 app.get("/notes", (req, res) => {
@@ -95,5 +95,5 @@ app.delete("/notes/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Listening to port: 8080");
+  console.log(`Listening to port: ${port}`);
 });
