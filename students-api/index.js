@@ -16,6 +16,9 @@ const jsonFilePath = path.join(__dirname, "notes.json");
 
 const port = process.env.PORT || 8080;
 
+app.get("/", (req, res) => {
+  res.redirect("/notes");
+});
 
 app.get("/notes", (req, res) => {
   let notes = JSON.parse(fs.readFileSync(jsonFilePath, "utf-8"));
